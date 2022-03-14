@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\MarcaController;
-use App\Models\Cliente;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -21,14 +21,13 @@ Route::get('/', function () {
 });
 
 Route::get('eloquent',function () {
-     $clientes = Cliente::all();
 
-        echo "$clientes->find(4)";
+
 });
 
 
 //Crud de Marcas
-Route::get('/marcas',[MarcaController::class,'index'])->name('marcas.index');
+Route::get('/marcas/index',[MarcaController::class,'index'])->name('marcas.index');
 Route::get('/marcas/create',[MarcaController::class,'create'])->name('marcas.create');
 Route::post('/marcas/store',[MarcaController::class,'store'])->name('marcas.store');
 Route::get('/marcas/edit/{id}',[MarcaController::class,'edit'])->name('marcas.edit');

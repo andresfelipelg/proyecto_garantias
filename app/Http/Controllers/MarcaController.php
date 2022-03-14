@@ -16,7 +16,8 @@ class MarcaController extends Controller
     {
         $marcas = Marca::all();
 
-        return view('marcas.index',['marcas' => $marcas]);
+
+        return view('marcas.index',compact('marcas'));
     }
 
     /**
@@ -26,7 +27,7 @@ class MarcaController extends Controller
      */
     public function create()
     {
-        //
+        return view ('marcas.create');
     }
 
     /**
@@ -35,9 +36,13 @@ class MarcaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request  $request )
     {
-        //
+        $marcas = new Marca();
+        $marcas->marca = $request->marca;
+        $marcas->save();
+
+        return redirect()->back();
 
     }
 
@@ -58,9 +63,12 @@ class MarcaController extends Controller
      * @param  \App\Models\Marca  $marca
      * @return \Illuminate\Http\Response
      */
-    public function edit(Marca $marca)
+    public function edit(Marca $id)
     {
-        //
+
+
+        return view ('marcas.edit', compact('id'));
+
     }
 
     /**
@@ -70,9 +78,13 @@ class MarcaController extends Controller
      * @param  \App\Models\Marca  $marca
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Marca $marca)
+    public function update(Request $request, Marca $id)
     {
-        //
+        //dd($request);
+        $id->marca = $request->marca;
+        $id->update();
+
+        return redirect(route('marcas.index'));
     }
 
     /**
